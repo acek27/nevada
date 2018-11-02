@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="col-lg-12">
+    <div class="col-lg-11">
         <div class="card">
             <div class="card-header card-header-primary">
                 <h4 class="card-title"><strong>Detail Produk</strong> INFO</h4>
@@ -23,8 +23,8 @@
                         <br>
                         <div class="table-responsive">
                             <table class="table">
+                                <h4 style="font-size: 25px"><strong>{{$produk->nama_produk}} - NEVADA</strong></h4>
                                 <thead>
-                                <th style="font-size: 25px"><strong>{{$produk->nama_produk}} - NEVADA</strong></th>
                                 <tr>
                                     <th>
                                         <strong>Size</strong>
@@ -61,7 +61,7 @@
                                         <strong>Harga</strong>
                                     </th>
                                     <td>
-                                        <div style="font-size: 20px; color: darkviolet">
+                                        <div style="margin-right:100px;font-size: 25px; color: darkviolet">
                                             <strong>Rp{{number_format($produk->harga,2,',','.')}}</strong></div>
                                     </td>
                                 </tr>
