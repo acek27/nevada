@@ -35,7 +35,7 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+            <a href="/dashboardAdmin" class="simple-text logo-normal">
                 <img src="{{asset('assets/img/nevada.png')}}" width="180" height="75">
             </a>
         </div>
