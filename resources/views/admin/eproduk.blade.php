@@ -13,7 +13,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title"><strong>Edit Product</strong> FORM</h4>
+                    <h4 class="card-title"><strong>FORM</strong> Edit Produk</h4>
                 </div>
                 <div class="card-body">
                     {!! Form::model($produk,['url'=>route('produk.update',$produk->id_produk),'method'=>'put', 'files' => true]) !!}

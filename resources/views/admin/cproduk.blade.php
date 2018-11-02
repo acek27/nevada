@@ -13,7 +13,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title"><strong>Add Product</strong> FORM</h4>
+                    <h4 class="card-title"><strong>FORM</strong> Tambah Produk</h4>
                 </div>
                 <div class="card-body">
                     {!! Form::open(['url'=>route('produk.store'), 'method'=>'post', 'files' => true]) !!}
