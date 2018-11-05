@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="col s12 m8 19">
+    <div class="col-md-12 table-responsive">
         {!! $html->table(['class'=>'bordered-table display']) !!}
         {!! $html->scripts() !!}
     </div>
