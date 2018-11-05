@@ -17,7 +17,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        <img src="/images/{{$produk->image}}" width="450px" height="550px">
+                        <img src="/images/{{$produk->image}}" width="450px" height="550px" style="height: auto">
                     </div>
                     <div class="col-lg-6">
                         <br>
@@ -61,7 +61,7 @@
                                         <strong>Harga</strong>
                                     </th>
                                     <td>
-                                        <div style="margin-right:100px;font-size: 25px; color: darkviolet">
+                                        <div style="margin-right:100px;font-size: 25px; color:yellowgreen">
                                             <strong>Rp{{number_format($produk->harga,2,',','.')}}</strong></div>
                                     </td>
                                 </tr>

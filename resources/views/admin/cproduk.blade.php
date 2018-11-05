@@ -24,26 +24,26 @@
                                 <label class="bmd-label-floating">Gambar Produk</label>
                             </div>
                             <input type="file" onchange="readURL(this);" id="image" name="image"
-                                   class="form-control">
+                                   class="form-control" required>
                             <div class="form-group">
                                 <label for="pdname" class="bmd-label-floating">Nama Produk</label>
-                                <input type="text" name="pdname" class="form-control">
+                                <input type="text" name="pdname" class="form-control" required>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                 <label for="stok" class="bmd-label-floating">Stok Produk</label>
-                                <input type="text" name="stok" class="form-control">
+                                <input type="text" name="stok" class="form-control" required>
                             </div>
                                 </div>
                                 <div class="col-md-6">
                             <div class="form-group">
                                 <label for="pdharga" class="bmd-label-floating">Harga</label>
-                                <input type="text" name="pdharga" class="form-control">
+                                <input type="text" name="pdharga" class="form-control" required>
                             </div></div></div>
                             <div class="form-group">
                                 <label for="pddeskrip" class="bmd-label-floating">Deskripsi Produk</label>
-                                <textarea name="pddeskrip" rows="5" class="form-control"></textarea>
+                                <textarea name="pddeskrip" rows="5" class="form-control" required></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">

@@ -22,27 +22,27 @@
                             <div class="form-group">
                                 <label class="bmd-label-floating">Gambar Produk</label>
                             </div>
-                            <input type="file" onchange="readURL(this);" id="image" name="image" class="form-control">
+                            <input type="file" onchange="readURL(this);" id="image" name="image" class="form-control" required>
                             <div class="form-group">
                                 <label for="pdname" class="bmd-label-floating">Nama Produk</label>
-                                <input type="text" name="pdname" class="form-control" value="{{$produk->nama_produk}}">
+                                <input type="text" name="pdname" class="form-control" value="{{$produk->nama_produk}}" required>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="stok" class="bmd-label-floating">Stok Produk</label>
-                                        <input type="text" name="stok" class="form-control" value="{{$produk->stok}}">
+                                        <input type="text" name="stok" class="form-control" value="{{$produk->stok}}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                             <div class="form-group">
                                 <label for="pdharga" class="bmd-label-floating">Harga</label>
-                                <input type="text" name="pdharga" class="form-control" value="{{$produk->harga}}">
+                                <input type="text" name="pdharga" class="form-control" value="{{$produk->harga}}" required>
                             </div></div></div>
                             <div class="form-group">
                                 <label for="pddeskrip" class="bmd-label-floating">Deskripsi Produk</label>
                                 <textarea name="pddeskrip" rows="5"
-                                          class="form-control">{{$produk->deskripsi}}</textarea>
+                                          class="form-control" required>{{$produk->deskripsi}}</textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
