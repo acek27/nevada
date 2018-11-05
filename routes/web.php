@@ -27,3 +27,4 @@ Route::resource('/dashboardUser', 'User\DashboardController');
 Route::resource('/user', 'Admin\UserController');
 
 Route::get('user/{id}/delete','Admin\UserController@delete');
+Route::get('produk/{id}/delete','Admin\ProdukController@delete');

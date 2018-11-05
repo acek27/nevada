@@ -15,19 +15,22 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,Builder $htmlBuilder)
+    public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $produk = produk::select('id_produk','nama_kategori','nama_produk','harga','stok','deskripsi','size','warna')
-                ->join('size', 'size.id_size','=','produk.id_size')
-                ->join('kategori', 'kategori.id_kategori','=','produk.id_kategori')
-                ->join('warna', 'warna.id_warna','=','produk.id_warna')
+            $produk = produk::select('id_produk', 'nama_kategori', 'nama_produk', 'harga', 'stok', 'deskripsi', 'size', 'warna')
+                ->join('size', 'size.id_size', '=', 'produk.id_size')
+                ->join('kategori', 'kategori.id_kategori', '=', 'produk.id_kategori')
+                ->join('warna', 'warna.id_warna', '=', 'produk.id_warna')
                 ->get();
             return DataTables::of($produk)
                 ->addColumn('action', function ($produk) {
-                    $edit = "<a style=\"margin-left:20px\" href=\"" . route('produk.edit', $produk->id_produk) . "\"><i class=\"material-icons\">edit</i></a>";
-                    return $edit;
-                    })->make(true);
+                    $edit = "<a style=\"margin-left:20px\" href=\"" . route('produk.edit', $produk->id_produk) . "\">
+                            <i class=\"material-icons\" title=\"Edit\" style=\"color: cadetblue\">edit</i></a>";
+                    $delete = "<a style=\"margin-left:20px\" href=\"/produk/$produk->id_produk/delete\">
+                            <i class=\"material-icons\" title=\"Delete\" style=\"color: cadetblue\">delete</i></a>";
+                    return $edit.$delete;
+                })->make(true);
         }
         $html = $htmlBuilder
             ->addColumn(['data' => 'id_produk', 'name' => 'id_produk', 'title' => 'ID'])
@@ -55,7 +58,7 @@ class DashboardController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -66,7 +69,7 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -77,7 +80,7 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -88,8 +91,8 @@ class DashboardController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -100,7 +103,7 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

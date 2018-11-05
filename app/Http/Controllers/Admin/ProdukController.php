@@ -121,6 +121,13 @@ class ProdukController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+
+    public function delete($id){
+        $produk = produk::find($id);
+        $produk->delete();
+        return redirect('/dashboardAdmin');
+    }
+
     public function destroy($id)
     {
         //
