@@ -32,7 +32,7 @@
 
                         <div class="card-footer">
                             <div class="stats">
-                                <a href="{{route('produk.edit',$value->id_produk)}}" class="btn btn-danger"
+                                <a href="{{route('produk.edit',$value->id_produk)}}" class="btn btn-warning"
                                    style="margin: 0px 0px 15px -12px"><span><i
                                             title="tambahkan ke keranjang" class="material-icons"
                                             style="position: initial">add_shopping_cart</i></span></a>
