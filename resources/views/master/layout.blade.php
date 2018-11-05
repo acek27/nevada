@@ -22,9 +22,9 @@
 
     <link href="{{asset('css/jquery.dataTables.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="{{asset('css/jquery.dataTables.min.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
-    {!! Html::script('js/jquery.js') !!}
-    {!! Html::script('js/jquery.dataTables.min.js') !!}
-    {!! Html::script('js/plugins/data-tables/data-tables-script.js') !!}
+{!! Html::script('js/jquery.js') !!}
+{!! Html::script('js/jquery.dataTables.min.js') !!}
+{!! Html::script('js/plugins/data-tables/data-tables-script.js') !!}
 
 <body class="">
 <div class="wrapper ">
@@ -46,7 +46,8 @@
                         <i class="material-icons">dashboard</i>
                         <p>Beranda Admin</p>
                     </a>
-                </li><li class="nav-item active  ">
+                </li>
+                <li class="nav-item active  ">
                     <a class="nav-link" href="/dashboardUser">
                         <i class="material-icons">dashboard</i>
                         <p>Beranda User</p>
@@ -73,7 +74,7 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="./icons.html">
                         <i class="material-icons">content_paste</i>
-                        <p>Pesanan</p>
+                        <p>Pesanan <span style="margin-left: 45%;color: #7f231c"><strong>1</strong></span></p>
                     </a>
                 </li>
                 <li class="nav-item ">
