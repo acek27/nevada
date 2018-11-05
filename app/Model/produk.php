@@ -23,4 +23,9 @@ class produk extends Model
     {
         return $this->belongsTo('App\Model\size','id_size','id_size');
     }
+
+    public function order()
+    {
+        return $this->hasMany(produk::class, 'id_produk', 'id_produk');
+    }
 }

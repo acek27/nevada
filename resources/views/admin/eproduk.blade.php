@@ -17,6 +17,7 @@
                 </div>
                 <div class="card-body">
                     {!! Form::model($produk,['url'=>route('produk.update',$produk->id_produk),'method'=>'put', 'files' => true]) !!}
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
