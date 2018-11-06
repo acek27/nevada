@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="./icons.html">
+                    <a class="nav-link" href="{{route('OrderReq.index')}}">
                         <i class="material-icons">content_paste</i>
                         <p>Pesanan <span style="margin-left: 45%;color: #7f231c"><strong>1</strong></span></p>
                     </a>
