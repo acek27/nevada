@@ -25,9 +25,9 @@ class DashboardController extends Controller
                 ->get();
             return DataTables::of($produk)
                 ->addColumn('action', function ($produk) {
-                    $edit = "<a style=\"margin-left:20px\" href=\"" . route('produk.edit', $produk->id_produk) . "\">
+                    $edit = "<a href=\"" . route('produk.edit', $produk->id_produk) . "\">
                             <i class=\"material-icons\" title=\"Edit\" style=\"color: cadetblue\">edit</i></a>";
-                    $delete = "<a style=\"margin-left:20px\" href=\"/produk/$produk->id_produk/delete\">
+                    $delete = "<a href=\"/produk/$produk->id_produk/delete\">
                             <i class=\"material-icons\" title=\"Delete\" style=\"color: cadetblue\">delete</i></a>";
                     return $edit.$delete;
                 })->make(true);
