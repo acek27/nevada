@@ -29,19 +29,6 @@
                         <h3 class="header-title" style="margin: -10px 0px 0px 0px; color:#7f231c"><strong>
                                 Rp{{number_format($value->harga,2,',','.')}}</strong>
                         </h3>
-
-                        <div class="card-footer">
-                            <div class="stats">
-                                <a href="{{route('OrderReq.show',$value->id_produk)}}" class="btn btn-warning"
-                                   style="margin: 0px 0px 15px -12px"><span><i
-                                            title="tambahkan ke keranjang" class="material-icons"
-                                            style="position: initial">add_shopping_cart</i></span></a>
-                                <a href="{{route('OrderReq.show',$value->id_produk)}}" class="btn btn-success"
-                                   style="margin: 0px 0px 15px 25px"><span>Beli Sekarang</span></a>
-
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>

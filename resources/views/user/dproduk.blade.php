@@ -68,6 +68,18 @@
                                 </thead>
                             </table>
                         </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href="{{route('OrderReq.show',$produk->id_produk)}}" class="btn btn-warning"
+                                   style="margin: 0px 0px 15px -12px"><span><i
+                                            title="tambahkan ke keranjang" class="material-icons"
+                                            style="position: initial">add_shopping_cart</i></span></a>
+                                <a href="{{route('OrderReq.show',$produk->id_produk)}}" class="btn btn-success"
+                                   style="margin: 0px 0px 15px 25px"><span>Beli Sekarang</span></a>
+
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
