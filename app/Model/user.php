@@ -12,6 +12,6 @@ class user extends Model
 
     public function order()
     {
-        return $this->hasMany(produk::class, 'id_user', 'id_user');
+        return $this->hasMany(orderUser::class, 'id_user', 'id_user');
     }
 }

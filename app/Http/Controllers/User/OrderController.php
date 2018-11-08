@@ -53,14 +53,14 @@ class OrderController extends Controller
     public function show($id)
     {
         $produk = produk::findOrFail($id);
-        $user = Auth::user()->id;
-
-        $order = new orderUser();
-        $order->tgl_pesanan = date('Y-m-d');
-        $order->status = 2;
-        $order->id_produk = $id;
-        $order->id_user = $user;
-        $order->save();
+//        $user = Auth::user()->id;
+//
+//        $order = new orderUser();
+//        $order->tgl_pesanan = date('Y-m-d');
+//        $order->status = 2;
+//        $order->id_produk = $id;
+//        $order->id_user = $user;
+//        $order->save();
         return view('user.dproduk')->with(compact('produk'));
     }
 
