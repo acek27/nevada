@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Model\produk;
 use App\Model\orderUser;
 use App\Model\ekspedisi;
+use Yajra\DataTables\Html\Builder;
+use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -16,11 +18,31 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Builder $htmlBuilder)
     {
-        $order = orderUser::all()
-            ->where('id_user', Auth::user()->id);
-        return view('user.pesanan', compact('order'));
+        if ($request->ajax()) {
+            $order = orderUser::select('id_order','nama_penerima','tgl_pesanan','alamat','no_hp','total','produk.nama_produk as produk','ekspedisi.nama as ekspedisi')
+                ->join('produk', 'produk.id_produk', '=', 'order.id_produk')
+                ->join('ekspedisi', 'ekspedisi.id_ekspedisi', '=', 'order.id_ekspedisi')
+                ->where('id_user', Auth::user()->id);
+            return DataTables::of($order)
+                ->addColumn('action', function ($order) {
+                    $konfirmasi = "<a href=\"" . route('produk.edit', $order->id_order) . "\">Konfirmasi Pembayaran</a>";
+                    return $konfirmasi;
+                })->make(true);
+        }
+        $html = $htmlBuilder
+            ->addColumn(['data' => 'id_order', 'name' => 'id_order', 'title' => 'ID'])
+            ->addColumn(['data' => 'nama_penerima', 'name' => 'nama_penerima', 'title' => 'Nama Penerima'])
+            ->addColumn(['data' => 'no_hp', 'name' => 'no_hp', 'title' => 'No HP'])
+            ->addColumn(['data' => 'tgl_pesanan', 'name' => 'tgl_pesanan', 'title' => 'Tanggal Pemesanan'])
+            ->addColumn(['data' => 'alamat', 'name' => 'alamat', 'title' => 'Alamat'])
+            ->addColumn(['data' => 'produk', 'name' => 'produk', 'title' => 'Produk'])
+            ->addColumn(['data' => 'ekspedisi', 'name' => 'ekspedisi', 'title' => 'Eskpedisi'])
+            ->addColumn(['data' => 'total', 'name' => 'total', 'title' => 'Total'])
+            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false]);
+
+        return view('user.pesanan', compact('html'));
     }
 
 
@@ -94,7 +116,7 @@ class OrderController extends Controller
         $order->save();
 
         $stok = produk::where('id_produk', $id)->first()->stok;
-        produk::where('id_produk', $id)->update(['stok' => $stok-1]);
+        produk::where('id_produk', $id)->update(['stok' => $stok - 1]);
         return redirect('/OrderReq');
     }
 

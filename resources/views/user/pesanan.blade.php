@@ -1,15 +1,16 @@
 @extends('master.layout')
 
 @section('title')
-    Detail Produk
+    Pesanan
 @endsection
 
 @section('subtitle')
-    Produk
+    Pesanan
 @endsection
 
 @section('content')
-    @foreach($order as $value)
-        {{$value->produk->nama_produk}}
-    @endforeach
+    <div class="col-md-12 table-responsive">
+        {!! $html->table(['class'=>'bordered-table display']) !!}
+        {!! $html->scripts() !!}
+    </div>
 @endsection
