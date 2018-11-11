@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label class="bmd-label-floating">Gambar Produk</label>
                             </div>
-                            <input type="file" onchange="readURL(this);" id="image" name="image" class="form-control-file" required>
+                            <input type="file" onchange="readURL(this);" id="image" name="image" class="form-control-file">
                             <div class="form-group">
                                 <label for="pdname" class="bmd-label-floating">Nama Produk</label>
                                 <input type="text" name="pdname" class="form-control" value="{{$produk->nama_produk}}" required>

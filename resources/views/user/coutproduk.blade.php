@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="card-body">
-                        {!! Form::open(['url'=>route('OrderReq.update', $produk->id_produk), 'method'=>'post']) !!}
+                        {!! Form::model($produk,['url'=>route('OrderReq.update',$produk->id_produk), 'method'=>'put']) !!}
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-12">
@@ -62,7 +62,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="total" class="bmd-label-floating">Total Pembayaran</label>
-                                    <input type="text" name="total" class="form-control" value="Rp{{number_format($produk->harga+10000,2,',','.')}}" disabled></input>
+                                    <input type="text" name="total" class="form-control" value="Rp{{number_format($produk->harga+10000,2,',','.')}}" disabled>
+                                    <input type="hidden" name="tot" class="form-control" value="{{$produk->harga+10000}}">
                                 </div>
                             </div>
                         </div>

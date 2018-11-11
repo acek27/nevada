@@ -57,7 +57,7 @@ class OrderController extends Controller
         $user = Auth::user()->name;
         $ekspedisi = ekspedisi::all();
 
-        return view('user.coutproduk')->with(compact('produk','user','ekspedisi'));
+        return view('user.coutproduk')->with(compact('produk', 'user', 'ekspedisi'));
     }
 
     /**
@@ -80,7 +80,22 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $idUser = Auth::user()->id;
+        $order = new orderUser();
+        $order->nama_penerima = $request->get('nama');
+        $order->tgl_pesanan = date('Y-m-d');
+        $order->alamat = $request->get('almt');
+        $order->no_hp = $request->get('nohp');
+        $order->status = 2;
+        $order->id_produk = $id;
+        $order->id_user = $idUser;
+        $order->id_ekspedisi = $request->get('eks');
+        $order->total = $request->get('tot');
+        $order->save();
+
+        $stok = produk::where('id_produk', $id)->first()->stok;
+        produk::where('id_produk', $id)->update(['stok' => $stok-1]);
+        return redirect('/OrderReq');
     }
 
     /**
