@@ -20,4 +20,8 @@ class orderUser extends Model
     {
         return $this->belongsTo('App\Model\user','id_user','id_user');
     }
+    public function ekspedisi()
+    {
+        return $this->belongsTo('App\Model\ekspedisi','id_ekspedisi', 'id_ekspedisi');
+    }
 }
