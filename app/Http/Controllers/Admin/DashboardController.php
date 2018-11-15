@@ -27,7 +27,7 @@ class DashboardController extends Controller
                 ->addColumn('action', function ($produk) {
                     $edit = "<a href=\"" . route('produk.edit', $produk->id_produk) . "\">
                             <i class=\"material-icons\" title=\"Edit\" style=\"color: cadetblue\">edit</i></a>";
-                    $delete = "<a href=\"/produk/$produk->id_produk/delete\">
+                    $delete = "<a href=\"/admin/produk/$produk->id_produk/delete\">
                             <i class=\"material-icons\" title=\"Delete\" style=\"color: cadetblue\">delete</i></a>";
                     return $edit.$delete;
                 })->make(true);

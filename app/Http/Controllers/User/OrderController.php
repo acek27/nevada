@@ -117,7 +117,7 @@ class OrderController extends Controller
 
         $stok = produk::where('id_produk', $id)->first()->stok;
         produk::where('id_produk', $id)->update(['stok' => $stok - 1]);
-        return redirect('/OrderReq');
+        return redirect('/user/OrderReq');
     }
 
     /**

@@ -21,7 +21,7 @@ class UserController extends Controller
             $user = user::all();
             return DataTables::of($user)
                 ->addColumn('action', function ($user) {
-                    $edit = "<a style=\"margin-left:20px\" href=\"/user/$user->id/delete\"><i class=\"material-icons\">delete</i></a>";
+                    $edit = "<a style=\"margin-left:20px\" href=\"/admin/user/$user->id/delete\"><i class=\"material-icons\">delete</i></a>";
                     return $edit;
                 })->make(true);
         }
@@ -90,7 +90,7 @@ class UserController extends Controller
     public function delete ($id){
         $user = user::find($id);
         $user->delete();
-        return redirect('/user');
+        return redirect('/admin/user');
     }
     /**
      * Remove the specified resource from storage.

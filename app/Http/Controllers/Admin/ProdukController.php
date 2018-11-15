@@ -56,7 +56,7 @@ class ProdukController extends Controller
         $produk->id_warna = $request->get('warna');
         $produk->id_kategori = $request->get('kategori');
         $produk->save();
-        return redirect('/dashboardAdmin');
+        return redirect('/admin/dashboardAdmin');
     }
 
     /**
@@ -112,7 +112,7 @@ class ProdukController extends Controller
         $produk->id_warna = $request->get('warna');
         $produk->id_kategori = $request->get('kategori');
         $produk->update();
-        return redirect('/dashboardAdmin');
+        return redirect('/admin/dashboardAdmin');
     }
 
     /**
@@ -125,7 +125,7 @@ class ProdukController extends Controller
     public function delete($id){
         $produk = produk::find($id);
         $produk->delete();
-        return redirect('/dashboardAdmin');
+        return redirect('/admin/dashboardAdmin');
     }
 
     public function destroy($id)
