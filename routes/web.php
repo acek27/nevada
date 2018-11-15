@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('home');
 });
 
 Auth::routes();
@@ -22,15 +22,22 @@ Auth::routes();
 
 //Route::get('/dashboardAdmin', 'Admin\DashboardController@index');
 //Admin
-Route::resource('/produk', 'Admin\ProdukController');
-Route::resource('/dashboardAdmin', 'Admin\DashboardController');
-Route::resource('/dashboardUser', 'User\DashboardController');
-Route::resource('/dashboardUser', 'User\DashboardController');
-Route::resource('/OrderProses', 'Admin\OrderController');
-Route::resource('/user', 'Admin\UserController');
+Route::middleware(['auth', 'can:admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::resource('/user', 'Admin\UserController');
+        Route::resource('/produk', 'Admin\ProdukController');
+        Route::resource('/dashboardAdmin', 'Admin\DashboardController');
+        Route::resource('/OrderProses', 'Admin\OrderController');
+        Route::get('user/{id}/delete', 'Admin\UserController@delete');
+        Route::get('produk/{id}/delete', 'Admin\ProdukController@delete');
+    });
+});
 
-//user
-Route::resource('/OrderReq', 'User\OrderController');
+Route::middleware(['auth', 'can:user'])->group(function () {
+    Route::prefix('user')->group(function () {
+        Route::resource('/dashboardUser', 'User\DashboardController');
+        Route::resource('/OrderReq', 'User\OrderController');
+        Route::resource('/produkUser', 'User\ProdukController');
+    });
+});
 
-Route::get('user/{id}/delete','Admin\UserController@delete');
-Route::get('produk/{id}/delete','Admin\ProdukController@delete');

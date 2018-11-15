@@ -15,8 +15,8 @@
                 <div class="card card-stats">
                     <div class="card-header" style="height: 400px"
                          title="{{$value->nama_produk}} {{$value->warna->warna}} - {{$value->size->size}}">
-                        <a href="{{route('produk.show',$value->id_produk)}}" style="margin-left: 5%">
-                            <img src="images/{{$value->image}}" alt="Daster" width="275px" height="350px"
+                        <a href="{{route('produkUser.show',$value->id_produk)}}" style="margin-left: 5%">
+                            <img src="/images/{{$value->image}}" alt="Daster" width="275px" height="350px"
                                  style="height: auto"></a>
                     </div>
                     <div style="margin: 0% 0% 0% 8%">

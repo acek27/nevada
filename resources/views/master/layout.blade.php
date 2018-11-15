@@ -35,66 +35,81 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo">
-            <a href="/dashboardAdmin" class="simple-text logo-normal">
+            <a href="{{route('dashboardAdmin.index')}}" class="simple-text logo-normal">
                 <img src="{{asset('assets/img/nevada.png')}}" width="180" height="75">
             </a>
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="nav-item active  ">
-                    <a class="nav-link" href="/dashboardAdmin">
-                        <i class="material-icons">dashboard</i>
-                        <p>Beranda Admin</p>
-                    </a>
-                </li>
-                <li class="nav-item active  ">
-                    <a class="nav-link" href="/dashboardUser">
-                        <i class="material-icons">dashboard</i>
-                        <p>Beranda User</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="/user">
-                        <i class="material-icons">person</i>
-                        <p>Data Customer</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="/produk">
-                        <i class="material-icons">note_add</i>
-                        <p>Tambah Produk</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./typography.html">
-                        <i class="material-icons">library_books</i>
-                        <p>List Produk</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{route('OrderReq.index')}}">
-                        <i class="material-icons">content_paste</i>
-                        <p>Pesanan <span style="margin-left: 45%;color: #7f231c"><strong>1</strong></span></p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./map.html">
-                        <i class="material-icons">local_shipping</i>
-                        <p>Pengiriman</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./notifications.html">
-                        <i class="material-icons">notifications</i>
-                        <p>Anu</p>
-                    </a>
-                </li>
-                <!-- <li class="nav-item active-pro ">
-                      <a class="nav-link" href="./upgrade.html">
-                          <i class="material-icons">unarchive</i>
-                          <p>Upgrade to PRO</p>
-                      </a>
-                  </li> -->
+                @can('user')
+                    <li class="nav-item active  ">
+                        <a class="nav-link" href="{{route('dashboardUser.index')}}">
+                            <i class="material-icons">dashboard</i>
+                            <p>Beranda User</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('OrderReq.index')}}">
+                            <i class="material-icons">content_paste</i>
+                            <p>Pesanan <span style="margin-left: 45%;color: #7f231c"><strong>1</strong></span></p>
+                        </a>
+                    </li>
+                @endcan
+                @can('admin')
+                    <li class="nav-item active  ">
+                        <a class="nav-link" href="{{route('dashboardAdmin.index')}}">
+                            <i class="material-icons">dashboard</i>
+                            <p>Beranda Admin</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('user.index')}}">
+                            <i class="material-icons">person</i>
+                            <p>Data Customer</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('produk.index')}}">
+                            <i class="material-icons">note_add</i>
+                            <p>Tambah Produk</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="./typography.html">
+                            <i class="material-icons">library_books</i>
+                            <p>List Produk</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('OrderReq.index')}}">
+                            <i class="material-icons">content_paste</i>
+                            <p>Pesanan <span style="margin-left: 45%;color: #7f231c"><strong>1</strong></span></p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="./map.html">
+                            <i class="material-icons">local_shipping</i>
+                            <p>Pengiriman</p>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item active-pro ">
+                          <a class="nav-link" href="./upgrade.html">
+                              <i class="material-icons">unarchive</i>
+                              <p>Upgrade to PRO</p>
+                          </a>
+                      </li> -->
+                @endcan
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            <i class="material-icons">notifications</i>
+                            <p>Logout</p>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
             </ul>
         </div>
     </div>
