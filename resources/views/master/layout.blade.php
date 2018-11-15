@@ -35,7 +35,7 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo">
-            <a href="{{route('dashboardAdmin.index')}}" class="simple-text logo-normal">
+            <a href="{{route('home')}}" class="simple-text logo-normal">
                 <img src="{{asset('assets/img/nevada.png')}}" width="180" height="75">
             </a>
         </div>
