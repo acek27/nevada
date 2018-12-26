@@ -23,23 +23,35 @@
                             <div class="form-group">
                                 <label class="bmd-label-floating">Gambar Produk</label>
                             </div>
-                            <input type="file" onchange="readURL(this);" id="image" name="image" class="form-control-file">
+                            <input type="file" onchange="readURL(this);" id="image" name="image"
+                                   class="form-control-file">
                             <div class="form-group">
                                 <label for="pdname" class="bmd-label-floating">Nama Produk</label>
-                                <input type="text" name="pdname" class="form-control" value="{{$produk->nama_produk}}" required>
+                                <input type="text" name="pdname" class="form-control" value="{{$produk->nama_produk}}"
+                                       required>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="stok" class="bmd-label-floating">Stok Produk</label>
-                                        <input type="text" name="stok" class="form-control" value="{{$produk->stok}}" required>
+                                        <input type="text" name="stok" class="form-control" value="{{$produk->stok}}"
+                                               required>
+                                        @if ($errors->any())
+                                            {!! $errors->first('stok', '<p style="font-size: 10px; color:red">Stok Harus Berupa Angka</p>') !!}
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="pdharga" class="bmd-label-floating">Harga</label>
-                                <input type="text" name="pdharga" class="form-control" value="{{$produk->harga}}" required>
-                            </div></div></div>
+                                    <div class="form-group">
+                                        <label for="pdharga" class="bmd-label-floating">Harga</label>
+                                        <input type="text" name="pdharga" class="form-control"
+                                               value="{{$produk->harga}}" required>
+                                        @if ($errors->any())
+                                            {!! $errors->first('pdharga', '<p style="font-size: 10px; color:red">Harga Harus Berupa Angka</p>') !!}
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="pddeskrip" class="bmd-label-floating">Deskripsi Produk</label>
                                 <textarea name="pddeskrip" rows="5"
@@ -67,8 +79,8 @@
                                             @foreach($warna as $value)
                                                 <option
                                                     @if($value->id_warna == $produk->id_warna)
-                                                        selected="selected"
-                                                        @endif
+                                                    selected="selected"
+                                                    @endif
                                                     value="{{$value->id_warna}}">{{$value->warna}}</option>
                                             @endforeach
                                         </select>
@@ -81,7 +93,7 @@
                                             @foreach($kategori as $value)
                                                 <option
                                                     @if($value->id_kategori == $produk->id_kategori)
-                                                        selected="selected"
+                                                    selected="selected"
                                                     @endif
                                                     value="{{$value->id_kategori}}">{{$value->nama_kategori}}</option>
                                             @endforeach

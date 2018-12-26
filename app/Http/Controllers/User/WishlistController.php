@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Model\produk;
 use App\Model\wishlist;
 
-class ProdukController extends Controller
+class WishlistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,47 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $data = produk::all()->where('stok', '=', '0');
-        return view('user.kosong',compact('data'));
+        $wish = wishlist::all();
+        return view('user.wishlist',compact('wish'));
+    }
+
+    public function wish ($id)
+    {
+        $user = Auth::user()->id;
+        $cek = \DB::table('wishlist')->select('*')->where('id_produk', '=', $id)->where('id_user', '=', $user);
+        if ($cek->exists()) {
+            \Session::flash("flash_notification", [
+                "level" => "danger",
+                "message" => "Produk sudah ada di Wishlist."
+            ]);
+            return redirect('/user/dashboardUser');
+        } else {
+            $user = Auth::user()->id;
+            $wish = new wishlist();
+            $wish->wish = 1;
+            $wish->id_produk = $id;
+            $wish->id_user = $user;
+            $wish->save();
+
+            \Session::flash("flash_notification", [
+                "level" => "succes",
+                "message" => "Produk ditambahkan ke Wishlist."
+            ]);
+
+            return redirect('/user/dashboardUser');
+        }
+    }
+
+    public function unwish ($id)
+    {
+        $wish = wishlist::findOrFail($id);
+        $wish->delete();
+        \Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Produk Berhasil Dihapus dari Wishlist"
+        ]);
+
+        return redirect('user/Wishlist');
     }
 
     /**
@@ -50,8 +88,7 @@ class ProdukController extends Controller
      */
     public function show($id)
     {
-        $produk = produk::findOrFail($id);
-        return view('user.dproduk')->with(compact('produk'));
+        //
     }
 
     /**

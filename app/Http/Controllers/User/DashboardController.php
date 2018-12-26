@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data = produk::all();
+        $data = produk::all()->where('stok', '>', '0');
         return view('user.dashboard',compact('data'));
     }
 

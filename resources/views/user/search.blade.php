@@ -1,21 +1,14 @@
 @extends('master.layout')
 
 @section('title')
-    Beranda
+    Hasil Pencarian
 @endsection
 
 @section('subtitle')
-    Beranda
+    Hasil Pencarian
 @endsection
 
 @section('content')
-    @if (session()->has('flash_notification.message'))
-        <div class="alert alert-{{ session()->get('flash_notification.level') }}">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {!! session()->get('flash_notification.message') !!}
-        </div>
-    @endif
-
     <div class="row" style="margin-top: -2%">
         @foreach($data as $value)
             <div class="col-lg-3 col-md-6">
@@ -42,8 +35,13 @@
                                 </h3>
                             </div>
                             <div style="margin-left: 10%; margin-top: -5px">
-                                <a href="{{route('Wishlist.wish', $value->id_produk)}}" id="wish"><i
-                                        class="material-icons" style="color: red">favorite_border</i></a>
+                                @if($wish ==false)
+                                    <a href="{{route('Wishlist.wish', $value->id_produk)}}" id="wish"><i
+                                            class="material-icons" style="color: red">favorite_border</i></a>
+                                @else
+                                    <a href="{{route('Wishlist.unwish', $value->id_produk)}}" id="unwish"><i
+                                            class="material-icons" style="color: red">favorite</i></a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -52,18 +50,3 @@
         @endforeach
     </div>
 @endsection
-
-{{--@section('script')--}}
-{{--<script>--}}
-{{--$('#wish').click(function () {--}}
-{{--$.ajax({--}}
-{{--url: "/kuesioner/" + $('#idkuesioner').val(),--}}
-{{--}).done(function (msg) {--}}
-{{--alert("Update!", "Data sudah terupdate.", "success");--}}
-{{--location.reload();--}}
-{{--}).fail(function (textStatus) {--}}
-{{--alert("Request failed: " + textStatus);--}}
-{{--});--}}
-{{--});--}}
-{{--</script>--}}
-{{--@endsection--}}

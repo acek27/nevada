@@ -27,23 +27,35 @@
                                    class="form-control-file" required>
                             <div class="form-group">
                                 <label for="pdname" class="bmd-label-floating">Nama Produk</label>
-                                <input type="text" name="pdname" class="form-control" required>
+                                <input type="text" name="pdname" class="form-control" value="{{old('pdname')}}"
+                                       required>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                <label for="stok" class="bmd-label-floating">Stok Produk</label>
-                                <input type="text" name="stok" class="form-control" required>
-                            </div>
+                                        <label for="stok" class="bmd-label-floating">Stok Produk</label>
+                                        <input type="text" name="stok" value="{{old('stok')}}" class="form-control"
+                                               required>
+                                        @if ($errors->any())
+                                            {!! $errors->first('stok', '<p style="font-size: 10px; color:red">Stok Harus Berupa Angka</p>') !!}
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="pdharga" class="bmd-label-floating">Harga</label>
-                                <input type="text" name="pdharga" class="form-control" required>
-                            </div></div></div>
+                                    <div class="form-group">
+                                        <label for="pdharga" class="bmd-label-floating">Harga</label>
+                                        <input type="text" name="pdharga" class="form-control"
+                                               value="{{old('pdharga')}}" required>
+                                        @if ($errors->any())
+                                            {!! $errors->first('pdharga', '<p style="font-size: 10px; color:red">Harga Harus Berupa Angka</p>') !!}
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="pddeskrip" class="bmd-label-floating">Deskripsi Produk</label>
-                                <textarea name="pddeskrip" rows="5" class="form-control" required></textarea>
+                                <textarea name="pddeskrip" rows="5" class="form-control"
+                                          required>{{old('pddeskrip')}}</textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
@@ -107,6 +119,7 @@
         </div>
     </div>
 @endsection
+
 @section('script')
     <script>
         function readURL(input) {

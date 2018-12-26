@@ -15,10 +15,12 @@ class produk extends Model
     {
         return $this->belongsTo('App\Model\warna','id_warna','id_warna');
     }
+
     public function kategori()
     {
         return $this->belongsTo('App\Model\kategori','id_kategori','id_kategori');
     }
+
     public function size()
     {
         return $this->belongsTo('App\Model\size','id_size','id_size');
@@ -26,6 +28,11 @@ class produk extends Model
 
     public function order()
     {
-        return $this->hasMany(produk::class, 'id_produk', 'id_produk');
+        return $this->hasMany(orderUser::class, 'id_produk', 'id_produk');
+    }
+
+    public  function wishlist()
+    {
+        return $this->hasMany(wishlist::class, 'id_produk', 'id_produk');
     }
 }

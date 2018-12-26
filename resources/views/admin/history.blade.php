@@ -1,11 +1,19 @@
 @extends('master.layout')
 
 @section('title')
-    Pesanan
+    @if($status == 6)
+        Order Selesai
+    @elseif($status == 7)
+        Order Batal
+    @endif
 @endsection
 
 @section('subtitle')
-    Pesanan Saya
+    @if($status == 6)
+        Order Selesai
+    @elseif($status == 7)
+        Order Batal
+    @endif
 @endsection
 
 @section('content')

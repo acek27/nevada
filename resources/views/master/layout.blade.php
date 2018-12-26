@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" height="" 100%>
 
 <head>
     <meta charset="utf-8"/>
+    <meta name="_token" content="{{ csrf_token() }}"/>
     <link rel="icon" sizes="76x76" href="{{asset('assets/img/nevada-icon.png')}}">
     <link rel="icon" type="image/png" href="{{asset('assets/img/nevada-icon.png')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -26,7 +27,7 @@
 {!! Html::script('js/jquery.dataTables.min.js') !!}
 {!! Html::script('js/plugins/data-tables/data-tables-script.js') !!}
 
-<body class="">
+<body style="position:relative; min-height:100%">
 <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
         <!--
@@ -35,7 +36,7 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo">
-            <a href="{{route('home')}}" class="simple-text logo-normal">
+            <a href="/dashboardAdmin" class="simple-text logo-normal">
                 <img src="{{asset('assets/img/nevada.png')}}" width="180" height="75">
             </a>
         </div>
@@ -52,6 +53,24 @@
                         <a class="nav-link" href="{{route('OrderReq.index')}}">
                             <i class="material-icons">content_paste</i>
                             <p>Pesanan <span style="margin-left: 45%;color: #7f231c"><strong>1</strong></span></p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('OrderReq.history')}}">
+                            <i class="material-icons">history</i>
+                            <p>History Pesanan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('Wishlist.index')}}">
+                            <i class="material-icons">favorite_border</i>
+                            <p>Wishlist</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{route('produkUser.index')}}">
+                            <i class="material-icons">cancel_presentation</i>
+                            <p>Produk Habis</p>
                         </a>
                     </li>
                 @endcan
@@ -75,41 +94,30 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="./typography.html">
+                        <a class="nav-link" href="{{route('produk.listProduk')}}">
                             <i class="material-icons">library_books</i>
                             <p>List Produk</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{route('OrderReq.index')}}">
+                        <a class="nav-link" href="{{route('OrderProses.index')}}">
                             <i class="material-icons">content_paste</i>
                             <p>Pesanan <span style="margin-left: 45%;color: #7f231c"><strong>1</strong></span></p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="./map.html">
-                            <i class="material-icons">local_shipping</i>
-                            <p>Pengiriman</p>
+                        <a class="nav-link" href="{{route('produk.emProduk')}}">
+                            <i class="material-icons">cancel_presentation</i>
+                            <p>Produk Habis</p>
                         </a>
                     </li>
-                    <!-- <li class="nav-item active-pro ">
-                          <a class="nav-link" href="./upgrade.html">
-                              <i class="material-icons">unarchive</i>
-                              <p>Upgrade to PRO</p>
-                          </a>
-                      </li> -->
-                @endcan
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            <i class="material-icons">notifications</i>
-                            <p>Logout</p>
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
+            @endcan
+            <!-- <li class="nav-item active-pro ">
+                      <a class="nav-link" href="./upgrade.html">
+                          <i class="material-icons">unarchive</i>
+                          <p>Upgrade to PRO</p>
+                      </a>
+                  </li> -->
             </ul>
         </div>
     </div>
@@ -131,11 +139,13 @@
                 <div class="collapse navbar-collapse justify-content-end">
                     <form class="navbar-form">
                         <div class="input-group no-border">
-                            <input type="text" value="" class="form-control" placeholder="Search...">
+                            {!! Form::open(['url'=>route('Search.index'), 'method'=>'get']) !!}
+                            <input type="text" name="search" class="form-control" placeholder="Search...">
                             <button type="submit" class="btn btn-white btn-round btn-just-icon">
                                 <i class="material-icons">search</i>
                                 <div class="ripple-container"></div>
                             </button>
+                            {!! Form::close() !!}
                         </div>
                     </form>
                     <ul class="navbar-nav">
@@ -147,30 +157,40 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('Cart.index')}}">
+                                <i class="material-icons">shopping_cart</i>
+                                <span class="notification">5</span>
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">notifications</i>
-                                <span class="notification">5</span>
-                                <p class="d-lg-none d-md-block">
-                                    Some Actions
-                                </p>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                                <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                                <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                                <a class="dropdown-item" href="#">Another Notification</a>
-                                <a class="dropdown-item" href="#">Another One</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#pablo">
                                 <i class="material-icons">person</i>
                                 <p class="d-lg-none d-md-block">
                                     Account
                                 </p>
+                                <div class="ripple-container"></div>
                             </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                @can('user')
+                                    <p class="dropdown-header" style="margin-top: 10px">{{Auth::user()->name}}</p>
+                                @endcan
+                                @can('admin')
+                                    <p class="dropdown-header" style="margin-top: 10px">Hi Admin!</p>
+                                @endcan
+                                <hr>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                                    <i class="material-icons" style="position: initial">logout</i><span>
+                                            <p class="dropdown-item">Logout</p></span>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 </div>

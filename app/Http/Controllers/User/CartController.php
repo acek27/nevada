@@ -1,21 +1,43 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\Html\Builder;
+use App\Model\orderUser;
 
-class DashboardController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Builder $htmlBuilder)
+    public function index()
     {
-        return view('admin.dashboard');
+        $cart = orderUser::where('status', '=', '1')->get();
+        return view('user.cart', compact('cart'));
+    }
+
+    public function addCart($id)
+    {
+        $user = Auth::user()->id;
+        $order = new orderUser();
+        $order->status = 1;
+        $order->id_produk = $id;
+        $order->id_user = $user;
+        $order->save();
+
+        return redirect('/user/Cart');
+    }
+
+    public function delCart($id)
+    {
+        $del = orderUser::findOrFail($id);
+        $del->delete();
+
+        return redirect('/user/Cart');
     }
 
     /**
@@ -31,7 +53,7 @@ class DashboardController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,7 +64,7 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -53,7 +75,7 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -64,8 +86,8 @@ class DashboardController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -76,7 +98,7 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

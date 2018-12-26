@@ -90,6 +90,10 @@ class UserController extends Controller
     public function delete ($id){
         $user = user::find($id);
         $user->delete();
+        \Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Customer $user->name Berhasil Dihapus"
+        ]);
         return redirect('/admin/user');
     }
     /**

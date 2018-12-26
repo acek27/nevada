@@ -14,4 +14,9 @@ class user extends Model
     {
         return $this->hasMany(orderUser::class, 'id_user', 'id_user');
     }
+
+    public function wishlist()
+    {
+        return $this->hasMany(wishlist::class, 'id_user', 'id_user');
+    }
 }

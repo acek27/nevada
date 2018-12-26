@@ -9,8 +9,6 @@
 @endsection
 
 @section('content')
-    <div class="col-md-12 table-responsive">
-        {!! $html->table(['class'=>'bordered-table display']) !!}
-        {!! $html->scripts() !!}
-    </div>
+    Hai Admin
 @endsection
+

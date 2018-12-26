@@ -1,70 +1,61 @@
 @extends('master.layout')
 
 @section('title')
-    Detail Produk
+    Detail Pembayaran
 @endsection
 
 @section('subtitle')
-    Produk
+    Detail Pembayaran
 @endsection
 
 @section('content')
     <div class="col-lg-11">
         <div class="card">
             <div class="card-header card-header-primary">
-                <h4 class="card-title"><strong>Detail Produk</strong> INFO</h4>
+                <h4 class="card-title"><strong>Detail Pembayaran</strong> INFO</h4>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        <img src="/images/{{$produk->image}}" width="100%" max-width="450px" height="550px"
+                        <img src="/images/{{$verify->bukti_bayar}}" width="100%" max-width="350px" height="450px"
                              style="height: auto">
                     </div>
                     <div class="col-lg-6">
                         <br>
                         <div class="table-responsive">
                             <table class="table">
-                                <h4 style="font-size: 25px"><strong>{{$produk->nama_produk}} - NEVADA</strong></h4>
+                                <h4 style="font-size: 20px"><strong>Bukti Pembayaran No. Order {{$order->no_order}}</strong></h4>
                                 <thead>
                                 <tr>
                                     <th>
-                                        <strong>Size</strong>
+                                        <strong>Tanggal Pembayaran</strong>
                                     </th>
                                     <td>
-                                        <div> {{$produk->size->size}} </div>
+                                        <div> {{$verify->tgl_bayar}} </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        <strong>Warna</strong>
+                                        <strong>Nama Bank</strong>
                                     </th>
                                     <td>
-                                        <div> {{$produk->warna->warna}} </div>
+                                        <div> {{$verify->nama_bank}} </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        <strong>Deskripsi</strong>
+                                        <strong>Nomor Rekening</strong>
                                     </th>
                                     <td>
-                                        <div> {{$produk->deskripsi}} </div>
+                                        <div> {{$verify->no_rek}} </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        <strong>Stok</strong>
+                                        <strong>Nama Pemilik Rekening</strong>
                                     </th>
                                     <td>
-                                        <div> {{$produk->stok}} </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <strong>Harga</strong>
-                                    </th>
-                                    <td>
-                                        <div style="margin-right:100px;font-size: 25px; color:yellowgreen">
-                                            <strong>Rp{{number_format($produk->harga,2,',','.')}}</strong></div>
+                                        <div> {{$verify->a_n}} </div>
                                     </td>
                                 </tr>
                                 </thead>
@@ -72,12 +63,14 @@
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <a href="{{route('Cart.addCart',$produk->id_produk)}}" class="btn btn-warning"
+                                <a href="{{route('Order.batal',$order->id_order)}}" class="btn btn-danger"
                                    style="margin: 0px 0px 15px -12px"><span><i
-                                            title="Tambah ke Keranjang" class="material-icons"
-                                            style="position: initial">add_shopping_cart</i></span></a>
-                                <a href="{{route('OrderReq.show',$produk->id_produk)}}" class="btn btn-success"
-                                   style="margin: 0px 0px 15px 25px"><span>Beli Sekarang</span></a>
+                                            title="Batalkan Order" class="material-icons"
+                                            style="position: initial">close</i>Batalkan Order</span></a>
+                                <a href="{{route('Order.verify',$order->id_order)}}" class="btn btn-success"
+                                   style="margin: 0px 0px 15px 25px"><span><i
+                                            title="Verifikasi Pembayaran" class="material-icons"
+                                            style="position: initial">check</i>Verifikasi Pembayaran</span></a>
                             </div>
                         </div>
                     </div>
@@ -85,5 +78,4 @@
             </div>
         </div>
     </div>
-
 @endsection

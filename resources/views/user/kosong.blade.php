@@ -1,21 +1,14 @@
 @extends('master.layout')
 
 @section('title')
-    Beranda
+    Produk Habis
 @endsection
 
 @section('subtitle')
-    Beranda
+    Produk Habis
 @endsection
 
 @section('content')
-    @if (session()->has('flash_notification.message'))
-        <div class="alert alert-{{ session()->get('flash_notification.level') }}">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {!! session()->get('flash_notification.message') !!}
-        </div>
-    @endif
-
     <div class="row" style="margin-top: -2%">
         @foreach($data as $value)
             <div class="col-lg-3 col-md-6">
@@ -42,7 +35,13 @@
                                 </h3>
                             </div>
                             <div style="margin-left: 10%; margin-top: -5px">
-                                <a href="{{route('Wishlist.wish', $value->id_produk)}}" id="wish"><i
+                                @foreach($value->wishlist as $wish)
+                                    @if($wish->wish == 1)
+                                        <a href="{{route('Wishlist.wish', $value->id_produk)}}" id="wish"><i
+                                                class="material-icons" style="color: red">favorite</i></a>
+                                    @endif
+                                @endforeach
+                                <a href="{{route('Wishlist.unwish', $value->id_produk)}}" id="unwish"><i
                                         class="material-icons" style="color: red">favorite_border</i></a>
                             </div>
                         </div>
