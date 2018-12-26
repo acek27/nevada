@@ -75,7 +75,7 @@ Route::middleware(['auth', 'can:user'])->group(function () {
             ->name('Wishlist.wish');
         Route::get('Wishlist/{id}/unwish', 'User\WishlistController@unwish')
             ->name('Wishlist.unwish');
-        Route::post('Search', 'User\SearchController@index')
+        Route::get('Search', 'User\SearchController@index')
             ->name('Search.index');
     });
 });
