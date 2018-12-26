@@ -149,12 +149,12 @@ class ProdukController extends Controller
         $produk->id_warna = $request->get('warna');
         $produk->id_kategori = $request->get('kategori');
         $produk->save();
-        return redirect('/admin/listProduk');
 
         \Session::flash("flash_notification", [
-            "level" => "succes",
+            "level" => "success",
             "message" => "Berhasil menambahkan produk $request->pdname"
         ]);
+
         return redirect ('/admin/listProduk');
         }
     }
