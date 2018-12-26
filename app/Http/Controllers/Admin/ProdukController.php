@@ -231,6 +231,7 @@ class ProdukController extends Controller
 
     public function delete($id){
         $produk = produk::find($id);
+        unlink(public_path('images/').$produk->image);
         $produk->delete();
         \Session::flash("flash_notification", [
             "level" => "success",
